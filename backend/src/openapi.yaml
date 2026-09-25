@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: Проводник.400 API
+  description: |
+    API тренажёра проводников ВСМ-400.
+    В демо используются вымышленные профили сотрудников.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8787/api
+    description: Локальная среда
+tags:
+  - name: scenarios
+  - name: sessions
+  - name: users
+  - name: gamification
+  - name: integrations
+paths:
+  /health:
+    get:
+      summary: Проверка живости
+      responses:
+        "200":
+          description: OK
+  /scenarios:
+    get:
+      tags: [scenarios]
+      summary: Список сценариев
+      responses:
+        "200":
+          description: Каталог сценариев
+  /scenarios/{id}:
+    get:
+      tags: [scenarios]
+      summary: Метаданные сценария
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Не найден
+  /scenarios/{id}/choices:
+    post:
+      tags: [scenarios]
+      summary: Добавить вариант ответа в сценарий
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [nodeId, choice]
+              properties:
+                nodeId: { type: string }
+                choice:
+                  type: object
+                  required: [id, text, next]
+                  properties:
+                    id: { type: string }
+                    text: { type: string }
+                    next: { type: string }
+                    effects:
+                      type: object
+                      properties:
+                        loyalty: { type: number }
+                        safety: { type: number }
+                        xp: { type: number }
+                    feedback: { type: string }
+      responses:
+        "201":
+          description: Развилка записана в файл сценария
+        "400":
+          description: Невалидные данные
+  /sessions:
+    post:
+      tags: [sessions]
+      summary: Старт игровой сессии
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, scenarioId]
+              properties:
+                userId: { type: string }
+                scenarioId: { type: string }
+      responses:
+        "201":
+          description: Сессия создана
+  /sessions/{id}:
+    get:
+      tags: [sessions]
+      summary: Текущее состояние узла
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Презентация узла
+  /sessions/{id}/choose:
+    post:
+      tags: [sessions]
+      summary: Выбор варианта ответа
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [choiceId]
+              properties:
+                choiceId: { type: string }
+      responses:
+        "200":
+          description: Новый узел или debrief
+  /sessions/{id}/timeout:
+    post:
+      tags: [sessions]
+      summary: Принудительно применить таймаут узла
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Выбор по таймауту применён
+  /sessions/{id}/debrief:
+    get:
+      tags: [sessions]
+      summary: Разбор последствий решений
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Debrief
+  /users:
+    get:
+      tags: [users]
+      summary: Список проводников
+      responses:
+        "200":
+          description: OK
+  /users/{id}:
+    get:
+      tags: [users]
+      summary: Профиль и ачивки
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+  /users/{id}/reset:
+    post:
+      tags: [users]
+      summary: Сброс прогресса профиля
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Профиль восстановлен из seed
+  /users/{id}/analytics:
+    get:
+      tags: [users]
+      summary: Аналитика компетенций
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+  /leaderboard:
+    get:
+      tags: [gamification]
+      summary: Таблица лидеров
+      parameters:
+        - name: scope
+          in: query
+          schema: { type: string, enum: [company, depot, brigade] }
+        - name: depotId
+          in: query
+          schema: { type: string }
+        - name: brigadeId
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+  /achievements:
+    get:
+      tags: [gamification]
+      summary: Справочник достижений
+      responses:
+        "200":
+          description: OK
+  /notifications/{userId}:
+    get:
+      tags: [gamification]
+      summary: Уведомления пользователя
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+  /integrations/hr/export/{userId}:
+    get:
+      tags: [integrations]
+      summary: Экспорт прогресса для HR/LMS
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Пакет для внешней системы
