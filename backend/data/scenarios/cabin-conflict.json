@@ -1,0 +1,266 @@
+{
+  "id": "cabin-conflict",
+  "title": "Шум и спор в салоне",
+  "route": "Москва — Санкт-Петербург",
+  "classHint": "Базовый",
+  "difficulty": "standard",
+  "durationMin": 5,
+  "description": "Громкий разговор по телефону перерастает в спор двух пассажиров. Нужно снизить конфликт без выбора стороны.",
+  "competencies": [
+    "конфликты",
+    "эмпатия",
+    "сервис"
+  ],
+  "startNode": "phone",
+  "nodes": {
+    "phone": {
+      "type": "situation",
+      "title": "Громкий звонок",
+      "text": "Пассажир 9C громко спорит по телефону. Соседи раздражены, ребёнок в 9A закрывает уши.",
+      "timerSec": 25,
+      "timeoutChoice": "ignore",
+      "competencyFocus": [
+        "сервис",
+        "конфликты"
+      ],
+      "imageHint": "conflict",
+      "choices": [
+        {
+          "id": "soft",
+          "text": "Индивидуально и тихо: «Будьте добры, чуть тише или продолжите в тамбуре — спасибо за понимание»",
+          "tone": "good",
+          "effects": {
+            "loyalty": 12,
+            "safety": 5,
+            "xp": 15
+          },
+          "competencyTags": [
+            "эмпатия",
+            "сервис",
+            "конфликты"
+          ],
+          "feedback": "Мягкая личная просьба без публичного стыда — стандарт сервиса.",
+          "next": "pushback"
+        },
+        {
+          "id": "speaker",
+          "text": "Сделать объявление по вагону с намёком на конкретного пассажира",
+          "tone": "bad",
+          "effects": {
+            "loyalty": -15,
+            "safety": 0,
+            "xp": 0
+          },
+          "competencyTags": [
+            "конфликты"
+          ],
+          "feedback": "Публичный намёк эскалирует и стыдит.",
+          "betterAlternative": "Тихое обращение один на один.",
+          "next": "pushback"
+        },
+        {
+          "id": "ignore",
+          "text": "Сделать вид, что не заметили",
+          "tone": "bad",
+          "effects": {
+            "loyalty": -10,
+            "safety": -5,
+            "xp": 0
+          },
+          "competencyTags": [
+            "сервис"
+          ],
+          "feedback": "Игнор снижает комфорт всего салона.",
+          "betterAlternative": "Вежливо вмешаться сразу.",
+          "next": "fight"
+        }
+      ],
+      "image": "/scenes/scene-conflict.jpg"
+    },
+    "pushback": {
+      "type": "situation",
+      "title": "Ответ пассажира",
+      "text": "«Это важный рабочий звонок, отстаньте!» Сосед встаёт: «Тогда говорите в тамбуре!»",
+      "timerSec": 20,
+      "timeoutChoice": "take_side",
+      "competencyFocus": [
+        "конфликты"
+      ],
+      "choices": [
+        {
+          "id": "separate",
+          "text": "Развести коммуникацию: предложить тамбур звонящему и альтернативное место раздражённому соседу",
+          "tone": "good",
+          "effects": {
+            "loyalty": 14,
+            "safety": 8,
+            "xp": 20
+          },
+          "competencyTags": [
+            "конфликты",
+            "сервис",
+            "эмпатия"
+          ],
+          "feedback": "Вы не выбираете сторону и даёте обоим выход.",
+          "next": "stabilize"
+        },
+        {
+          "id": "take_side",
+          "text": "Поддержать соседа и накричать на звонящего",
+          "tone": "bad",
+          "effects": {
+            "loyalty": -12,
+            "safety": -8,
+            "xp": 0
+          },
+          "competencyTags": [
+            "конфликты"
+          ],
+          "feedback": "Занятие стороны усиливает конфликт.",
+          "betterAlternative": "Нейтралитет + варианты для обоих + НП при эскалации.",
+          "next": "fight"
+        },
+        {
+          "id": "call_np",
+          "text": "Сразу пригласить НП, коротко объяснив риск эскалации",
+          "tone": "neutral",
+          "effects": {
+            "loyalty": 5,
+            "safety": 10,
+            "xp": 12
+          },
+          "competencyTags": [
+            "регламент",
+            "конфликты"
+          ],
+          "feedback": "Уместно, если диалог уже на грани; лучше сочетать с попыткой развести стороны.",
+          "next": "stabilize"
+        }
+      ]
+    },
+    "fight": {
+      "type": "situation",
+      "title": "Спор вспыхнул",
+      "text": "Пассажиры перешли на крик. Кто-то снимает видео.",
+      "timerSec": 15,
+      "timeoutChoice": "film",
+      "competencyFocus": [
+        "конфликты",
+        "безопасность"
+      ],
+      "choices": [
+        {
+          "id": "stop",
+          "text": "Спокойно встать между конфликтной дистанцией, попросить прекратить съёмку лиц без согласия, вызвать НП",
+          "tone": "good",
+          "effects": {
+            "loyalty": 8,
+            "safety": 15,
+            "xp": 20
+          },
+          "competencyTags": [
+            "конфликты",
+            "безопасность",
+            "регламент"
+          ],
+          "feedback": "Безопасная дистанция + НП + защита персональных данных.",
+          "next": "stabilize"
+        },
+        {
+          "id": "film",
+          "text": "Тоже достать телефон «для отчёта» и снимать спор",
+          "tone": "bad",
+          "effects": {
+            "loyalty": -10,
+            "safety": -10,
+            "xp": 0
+          },
+          "competencyTags": [
+            "регламент"
+          ],
+          "feedback": "Персонал не снимает пассажиров для давления; фиксацию ведёт НП по порядку.",
+          "betterAlternative": "Пресечь эскалацию и вызвать НП.",
+          "next": "ending_fail"
+        }
+      ]
+    },
+    "stabilize": {
+      "type": "situation",
+      "title": "После разведения",
+      "text": "Звонящий ушёл в тамбур. Сосед всё ещё зол. Ребёнку рядом некомфортно.",
+      "choices": [
+        {
+          "id": "followup",
+          "text": "Предложить пересесть/детский набор, через 5 минут взять обратную связь у обоих",
+          "tone": "good",
+          "effects": {
+            "loyalty": 15,
+            "safety": 5,
+            "xp": 20
+          },
+          "competencyTags": [
+            "сервис",
+            "эмпатия"
+          ],
+          "feedback": "Обратная связь после конфликта — обязательный сервисный штрих.",
+          "next": {
+            "conditions": [
+              {
+                "if": {
+                  "loyalty": {
+                    "gte": 55
+                  }
+                },
+                "goto": "ending_success"
+              },
+              {
+                "else": "ending_mixed"
+              }
+            ]
+          }
+        },
+        {
+          "id": "leave",
+          "text": "Считать вопрос закрытым и не возвращаться",
+          "tone": "neutral",
+          "effects": {
+            "loyalty": -5,
+            "safety": 0,
+            "xp": 5
+          },
+          "competencyTags": [
+            "сервис"
+          ],
+          "feedback": "Без follow-up лояльность «остывает» хуже.",
+          "betterAlternative": "Проверить комфорт участников через несколько минут.",
+          "next": "ending_mixed"
+        }
+      ]
+    },
+    "ending_success": {
+      "type": "ending",
+      "outcome": "success",
+      "title": "Салон успокоен",
+      "text": "Конфликт снижен без выбора стороны, комфорт восстановлен.",
+      "summary": "Сработали тихая просьба, нейтралитет, варианты решения и обратная связь.",
+      "image": "/scenes/cabin-window.jpg"
+    },
+    "ending_mixed": {
+      "type": "ending",
+      "outcome": "partial",
+      "title": "Напряжение снято частично",
+      "text": "Крик прекратился, но опыт пассажиров неоднородный.",
+      "summary": "Усильте индивидуальный подход и обязательный follow-up.",
+      "image": "/scenes/cabin-window.jpg"
+    },
+    "ending_fail": {
+      "type": "ending",
+      "outcome": "fail",
+      "title": "Конфликт усилился",
+      "text": "Эскалация или потеря нейтралитета ухудшили атмосферу в вагоне.",
+      "summary": "Не занимайте сторону, не игнорируйте сигнал, подключайте НП при крике/угрозах.",
+      "image": "/scenes/cabin-window.jpg"
+    }
+  },
+  "coverImage": "/scenes/scene-conflict.jpg"
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "first-shift",
+    "title": "Первая смена",
+    "description": "Завершите любой сценарий",
+    "icon": "ticket",
+    "rule": { "type": "runs", "value": 1 }
+  },
+  {
+    "id": "safety-guardian",
+    "title": "Страж безопасности",
+    "description": "Достигните рейтинга безопасности 85+ в одном сценарии",
+    "icon": "shield",
+    "rule": { "type": "best_safety", "value": 85 }
+  },
+  {
+    "id": "service-star",
+    "title": "Звезда сервиса",
+    "description": "Достигните лояльности пассажира 85+",
+    "icon": "star",
+    "rule": { "type": "best_loyalty", "value": 85 }
+  },
+  {
+    "id": "balanced-pro",
+    "title": "Баланс профессионала",
+    "description": "Завершите сценарий с лояльностью и безопасностью ≥ 70",
+    "icon": "scales",
+    "rule": { "type": "perfect_balance", "value": 1 }
+  },
+  {
+    "id": "fleet-explorer",
+    "title": "Маршрутный лист",
+    "description": "Пройдите 3 разных сценария",
+    "icon": "map",
+    "rule": { "type": "scenarios_unique", "value": 3 }
+  },
+  {
+    "id": "xp-500",
+    "title": "Разгон до 500",
+    "description": "Наберите 500 XP",
+    "icon": "bolt",
+    "rule": { "type": "xp", "value": 500 }
+  },
+  {
+    "id": "empathy-pro",
+    "title": "Эмпатия на скорости",
+    "description": "Наберите 80 очков компетенции «эмпатия»",
+    "icon": "heart",
+    "rule": { "type": "competency", "key": "эмпатия", "value": 80 }
+  },
+  {
+    "id": "protocol-master",
+    "title": "По регламенту",
+    "description": "Наберите 80 очков компетенции «регламент»",
+    "icon": "book",
+    "rule": { "type": "competency", "key": "регламент", "value": 80 }
+  },
+  {
+    "id": "crisis-handler",
+    "title": "Кризис-менеджер",
+    "description": "Успешно закройте 2 критических сценария",
+    "icon": "alert",
+    "rule": { "type": "critical_wins", "value": 2 }
+  }
+]
