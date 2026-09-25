@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "build": "echo \"backend is plain JS, nothing to build\"",
+    "selfcheck": "node src/engine/selfcheck.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nanoid": "^5.1.5",
+    "swagger-ui-express": "^5.0.1",
+    "yaml": "^2.7.0"
+  }
+}
