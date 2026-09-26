@@ -1,0 +1,173 @@
+{
+  "id": "pet-allergy",
+  "title": "Аллергия на животных",
+  "route": "Москва — Санкт-Петербург",
+  "classHint": "Базовый",
+  "difficulty": "standard",
+  "durationMin": 5,
+  "coverImage": "/scenes/scene-allergy.jpg",
+  "description": "У пассажира аллергия, рядом едет питомец в переноске. Нужно помочь без обвинений и с контролем самочувствия.",
+  "competencies": ["эмпатия", "сервис", "безопасность"],
+  "startNode": "complaint",
+  "nodes": {
+    "complaint": {
+      "type": "situation",
+      "title": "Жалоба на самочувствие",
+      "text": "Пассажир 22B: зуд, слезятся глаза. Указывает на переноску через проход. Питомец оформлен по правилам.",
+      "timerSec": 28,
+      "timeoutChoice": "blame",
+      "competencyFocus": ["эмпатия", "сервис"],
+      "image": "/scenes/scene-allergy.jpg",
+      "choices": [
+        {
+          "id": "empathy_check",
+          "text": "«Понимаю, аллергия серьёзна. Сейчас проверю возможность пересадки и уточню самочувствие»",
+          "tone": "good",
+          "effects": { "loyalty": 14, "safety": 10, "xp": 18 },
+          "competencyTags": ["эмпатия", "сервис", "безопасность"],
+          "feedback": "Признание дискомфорта + конкретное действие — стандарт сервиса.",
+          "next": "options"
+        },
+        {
+          "id": "blame",
+          "text": "Сказать владельцу животного, что он «вообще не должен был ехать»",
+          "tone": "bad",
+          "effects": { "loyalty": -18, "safety": -5, "xp": 0 },
+          "competencyTags": ["конфликты", "эмпатия"],
+          "feedback": "Обвинение провоцирует конфликт; питомец может быть оформлен легально.",
+          "betterAlternative": "Пересадка/дистанция + мониторинг самочувствия, без обвинений.",
+          "next": "conflict"
+        },
+        {
+          "id": "dismiss",
+          "text": "«Потерпите до Москвы» и уйти",
+          "tone": "bad",
+          "effects": { "loyalty": -22, "safety": -12, "xp": 0 },
+          "competencyTags": ["эмпатия", "безопасность"],
+          "feedback": "Игнор симптомов — риск для здоровья и лояльности.",
+          "betterAlternative": "Оценить состояние и предложить пересадку.",
+          "next": "ending_fail"
+        }
+      ]
+    },
+    "options": {
+      "type": "situation",
+      "title": "Варианты помощи",
+      "text": "Есть одно место дальше от животных в том же классе. Владелец питомца спокоен. Аллергик бледнеет.",
+      "timerSec": 25,
+      "timeoutChoice": "delay",
+      "competencyFocus": ["сервис", "безопасность"],
+      "choices": [
+        {
+          "id": "reseath",
+          "text": "Предложить пересадку аллергику, сообщить о кнопке вызова, доложить НП при ухудшении",
+          "tone": "good",
+          "effects": { "loyalty": 12, "safety": 14, "xp": 20 },
+          "competencyTags": ["сервис", "безопасность", "эмпатия"],
+          "feedback": "Дистанция + контроль состояния + готовность эскалировать.",
+          "next": "followup"
+        },
+        {
+          "id": "move_pet",
+          "text": "Заставить владельца убрать питомца в тамбур вопреки правилам класса",
+          "tone": "neutral",
+          "effects": { "loyalty": -8, "safety": 6, "xp": 8 },
+          "competencyTags": ["регламент", "конфликты"],
+          "feedback": "Лучше пересадить аллергика, чем ломать легальный провоз без НП.",
+          "betterAlternative": "Пересадка + при ухудшении НП/помощь.",
+          "next": "followup"
+        },
+        {
+          "id": "delay",
+          "text": "Обещать «сейчас найду» и пропасть на 20 минут",
+          "tone": "bad",
+          "effects": { "loyalty": -12, "safety": -8, "xp": 0 },
+          "competencyTags": ["сервис"],
+          "feedback": "Потеря времени при симптомах недопустима.",
+          "betterAlternative": "Сразу предложить доступное место.",
+          "next": "ending_mixed"
+        }
+      ]
+    },
+    "conflict": {
+      "type": "situation",
+      "title": "Спор двух пассажиров",
+      "text": "Владелец и аллергик повысили голос. Нужно развести стороны.",
+      "timerSec": 18,
+      "timeoutChoice": "side",
+      "choices": [
+        {
+          "id": "neutral",
+          "text": "Развести коммуникацию, предложить пересадку аллергику, пригласить НП",
+          "tone": "good",
+          "effects": { "loyalty": 10, "safety": 12, "xp": 15 },
+          "competencyTags": ["конфликты", "эмпатия", "сервис"],
+          "feedback": "Нейтралитет + решение + НП при эскалации.",
+          "next": "followup"
+        },
+        {
+          "id": "side",
+          "text": "Занять сторону одного из пассажиров",
+          "tone": "bad",
+          "effects": { "loyalty": -15, "safety": -5, "xp": 0 },
+          "competencyTags": ["конфликты"],
+          "feedback": "Выбор стороны усиливает конфликт.",
+          "betterAlternative": "Нейтральные варианты для обоих.",
+          "next": "ending_fail"
+        }
+      ]
+    },
+    "followup": {
+      "type": "situation",
+      "title": "Обратная связь",
+      "text": "Через 10 минут аллергик на новом месте. Как закрыть цикл?",
+      "choices": [
+        {
+          "id": "checkin",
+          "text": "Уточнить самочувствие, напомнить о кнопке вызова, поблагодарить за понимание",
+          "tone": "good",
+          "effects": { "loyalty": 12, "safety": 6, "xp": 15 },
+          "competencyTags": ["эмпатия", "сервис"],
+          "feedback": "Follow-up закрепляет сервис и безопасность.",
+          "next": {
+            "conditions": [
+              { "if": { "loyalty": { "gte": 55 }, "safety": { "gte": 55 } }, "goto": "ending_success" },
+              { "else": "ending_mixed" }
+            ]
+          }
+        },
+        {
+          "id": "skip",
+          "text": "Считать вопрос закрытым без проверки",
+          "tone": "neutral",
+          "effects": { "loyalty": -4, "safety": -4, "xp": 5 },
+          "competencyTags": ["сервис"],
+          "feedback": "Без обратной связи легко пропустить ухудшение.",
+          "betterAlternative": "Короткий check-in через несколько минут.",
+          "next": "ending_mixed"
+        }
+      ]
+    },
+    "ending_success": {
+      "type": "ending",
+      "outcome": "success",
+      "title": "Комфорт и безопасность сохранены",
+      "text": "Аллергику помогли без конфликта с владельцем питомца.",
+      "summary": "Эмпатия → пересадка → мониторинг → follow-up."
+    },
+    "ending_mixed": {
+      "type": "ending",
+      "outcome": "partial",
+      "title": "Помогли не идеально",
+      "text": "Базовая помощь оказана, но сервисный цикл неполный.",
+      "summary": "Не обвиняйте владельца; быстрее предлагайте место и проверяйте самочувствие."
+    },
+    "ending_fail": {
+      "type": "ending",
+      "outcome": "fail",
+      "title": "Ситуация ухудшилась",
+      "text": "Конфликт или игнор симптомов привели к провалу.",
+      "summary": "Здоровье пассажира — приоритет; решение через пересадку и НП."
+    }
+  }
+}
