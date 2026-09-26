@@ -1,0 +1,164 @@
+{
+  "id": "smoking-onboard",
+  "title": "Курение на борту",
+  "route": "Москва — Санкт-Петербург",
+  "classHint": "Базовый",
+  "difficulty": "critical",
+  "durationMin": 4,
+  "coverImage": "/scenes/scene-smoking.jpg",
+  "description": "Пассажир курит электронную сигарету в салоне. Нужно пресечь нарушение с акцентом на безопасность и без эскалации.",
+  "competencies": [
+    "безопасность",
+    "регламент",
+    "конфликты"
+  ],
+  "startNode": "vapor",
+  "nodes": {
+    "vapor": {
+      "type": "situation",
+      "title": "Запах и пар в проходе",
+      "text": "В базовом вагоне поднимается пар от электронной сигареты. Соседи кашляют. Таймер: нужно быстро убрать угрозу комфорту и безопасности.",
+      "timerSec": 20,
+      "timeoutChoice": "ignore",
+      "competencyFocus": [
+        "безопасность"
+      ],
+      "image": "/scenes/scene-smoking.jpg",
+      "imageHint": "smoking",
+      "choices": [
+        {
+          "id": "stop_soft",
+          "text": "Индивидуально: «Прошу прекратить курение — в поезде это не допускается, это вопрос безопасности»",
+          "tone": "good",
+          "effects": {
+            "loyalty": 8,
+            "safety": 15,
+            "xp": 18
+          },
+          "competencyTags": [
+            "безопасность",
+            "регламент",
+            "эмпатия"
+          ],
+          "feedback": "Вежливый запрет с акцентом на безопасность — эталон из методички.",
+          "next": "refuse"
+        },
+        {
+          "id": "ignore",
+          "text": "Сделать вид, что не заметили",
+          "tone": "bad",
+          "effects": {
+            "loyalty": -8,
+            "safety": -20,
+            "xp": 0
+          },
+          "competencyTags": [
+            "безопасность"
+          ],
+          "feedback": "Игнор курения недопустим: риск задымления и жалоб.",
+          "betterAlternative": "Сразу вежливо прекратить и при отказе вызвать НП/ПТБ.",
+          "next": "ending_fail"
+        },
+        {
+          "id": "shame",
+          "text": "Громко отчитать при всём вагоне",
+          "tone": "bad",
+          "effects": {
+            "loyalty": -18,
+            "safety": 5,
+            "xp": 5
+          },
+          "competencyTags": [
+            "конфликты"
+          ],
+          "feedback": "Публичный стыд часто ведёт к агрессии.",
+          "betterAlternative": "Тихое обращение + правило + НП при отказе.",
+          "next": "refuse"
+        }
+      ]
+    },
+    "refuse": {
+      "type": "situation",
+      "title": "Пассажир отказывается",
+      "text": "«Это же пар, не дым!» Продолжает. Рядом дети.",
+      "timerSec": 18,
+      "timeoutChoice": "argue",
+      "competencyFocus": [
+        "регламент",
+        "конфликты"
+      ],
+      "choices": [
+        {
+          "id": "escalate_np",
+          "text": "Повторить запрет, подчеркнуть угрозу безопасности, пригласить НП/ПТБ",
+          "tone": "good",
+          "effects": {
+            "loyalty": 4,
+            "safety": 18,
+            "xp": 22
+          },
+          "competencyTags": [
+            "безопасность",
+            "регламент"
+          ],
+          "feedback": "При отказе — эскалация по регламенту, без спора о «вреде пара».",
+          "next": {
+            "conditions": [
+              {
+                "if": {
+                  "safety": {
+                    "gte": 60
+                  }
+                },
+                "goto": "ending_success"
+              },
+              {
+                "else": "ending_mixed"
+              }
+            ]
+          }
+        },
+        {
+          "id": "argue",
+          "text": "Спорить о составе жидкости и «вредности»",
+          "tone": "bad",
+          "effects": {
+            "loyalty": -10,
+            "safety": -8,
+            "xp": 0
+          },
+          "competencyTags": [
+            "конфликты"
+          ],
+          "feedback": "Спор уводит от регламента и теряет время.",
+          "betterAlternative": "Правило одинаково для электронных сигарет; далее НП/ПТБ.",
+          "next": "ending_mixed"
+        }
+      ]
+    },
+    "ending_success": {
+      "type": "ending",
+      "outcome": "success",
+      "title": "Нарушение пресечено",
+      "text": "Курение остановлено, службы подключены при необходимости, салон спокоен.",
+      "summary": "Акцент на безопасности + вежливый тон + эскалация при отказе.",
+      "image": "/scenes/cabin-window.jpg"
+    },
+    "ending_mixed": {
+      "type": "ending",
+      "outcome": "partial",
+      "title": "Частично отработано",
+      "text": "Ситуация частично снята, но коммуникация или скорость реакции просели.",
+      "summary": "Не спорьте о «паре»: запрет полный, дальше — НП/ПТБ.",
+      "image": "/scenes/cabin-window.jpg"
+    },
+    "ending_fail": {
+      "type": "ending",
+      "outcome": "fail",
+      "title": "Сигнал проигнорирован",
+      "text": "Курение продолжилось — недопустимо для ВСМ.",
+      "summary": "Любое курение на борту пресекается сразу.",
+      "image": "/scenes/cabin-window.jpg"
+    }
+  }
+}
