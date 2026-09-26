@@ -1,0 +1,220 @@
+{
+  "items": [
+    {
+      "src": "/scenes/scene-medical.jpg",
+      "title": "Пассажиру стало плохо",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-bag.jpg",
+      "title": "Бесхозная вещь",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-pet.jpg",
+      "title": "Питомец без переноски",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-conflict.jpg",
+      "title": "Конфликт в салоне",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-boarding.jpg",
+      "title": "Посадка без билета",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-smoking.jpg",
+      "title": "Курение на борту",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-child.jpg",
+      "title": "Ребёнок потерялся",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-allergy.jpg",
+      "title": "Аллергия на животных",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-luggage.jpg",
+      "title": "Ручная кладь в проходе",
+      "source": "Иллюстрация проекта",
+      "group": "Сценарии"
+    },
+    {
+      "src": "/scenes/scene-platform-hsr.jpg",
+      "title": "Платформа ВСМ",
+      "source": "Иллюстрация проекта",
+      "group": "Сцены"
+    },
+    {
+      "src": "/scenes/scene-bistro.jpg",
+      "title": "Вагон-бистро",
+      "source": "Иллюстрация проекта",
+      "group": "Сцены"
+    },
+    {
+      "src": "/scenes/conductor-welcome.jpg",
+      "title": "Проводник встречает пассажира",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/route-map.jpg",
+      "title": "Маршрут СПб — Москва",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/cabin-collage.jpg",
+      "title": "Коллаж салона",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/cabin-window.jpg",
+      "title": "Вид из окна",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/cabin-couple.jpg",
+      "title": "Пассажиры у окна",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/cabin-seat.jpg",
+      "title": "Кресло базового класса",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/classes-overview.jpg",
+      "title": "Классы обслуживания",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/case-moodboard.jpg",
+      "title": "Муудборд салона",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/case-classes-full.jpg",
+      "title": "Схема классов",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/case-situations-cover.jpg",
+      "title": "Обложка ситуаций",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/case-route-wide.jpg",
+      "title": "Карта маршрута (wide)",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/case-conductor.jpg",
+      "title": "Проводник у двери First",
+      "source": "Материалы кейса ВСМ",
+      "group": "Кейс"
+    },
+    {
+      "src": "/scenes/tile-cabin-0.jpg",
+      "title": "Фрагмент салона 1",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/tile-cabin-1.jpg",
+      "title": "Фрагмент салона 2",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/tile-cabin-2.jpg",
+      "title": "Фрагмент салона 3",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/tile-cabin-3.jpg",
+      "title": "Фрагмент салона 4",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/tile-cabin-4.jpg",
+      "title": "Фрагмент салона 5",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/tile-cabin-5.jpg",
+      "title": "Фрагмент салона 6",
+      "source": "Материалы кейса ВСМ",
+      "group": "Салон"
+    },
+    {
+      "src": "/scenes/open/hsr-exterior.jpg",
+      "title": "Высокоскоростной поезд",
+      "source": "Unsplash (открытая лицензия)",
+      "group": "Открытые источники"
+    },
+    {
+      "src": "/scenes/open/hsr-motion.jpg",
+      "title": "Поезд в движении",
+      "source": "Unsplash (открытая лицензия)",
+      "group": "Открытые источники"
+    },
+    {
+      "src": "/scenes/open/train-platform.jpg",
+      "title": "Платформа",
+      "source": "Unsplash (открытая лицензия)",
+      "group": "Открытые источники"
+    },
+    {
+      "src": "/scenes/open/bullet-train.jpg",
+      "title": "Состав на станции",
+      "source": "Unsplash (открытая лицензия)",
+      "group": "Открытые источники"
+    },
+    {
+      "src": "/scenes/open/shinkansen.jpg",
+      "title": "HSR экстерьер",
+      "source": "Unsplash (открытая лицензия)",
+      "group": "Открытые источники"
+    },
+    {
+      "src": "/scenes/open/terminal.jpg",
+      "title": "Вокзальный зал",
+      "source": "Unsplash (открытая лицензия)",
+      "group": "Открытые источники"
+    },
+    {
+      "src": "/scenes/open/rail-journey.jpg",
+      "title": "Путешествие",
+      "source": "Unsplash (открытая лицензия)",
+      "group": "Открытые источники"
+    }
+  ]
+}
