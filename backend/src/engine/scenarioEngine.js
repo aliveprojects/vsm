@@ -84,7 +84,6 @@ export function presentNode(scenario, session) {
     choices: (node.choices || []).map((c) => ({
       id: c.id,
       text: c.text,
-      tone: c.tone || "neutral",
     })),
   };
 }

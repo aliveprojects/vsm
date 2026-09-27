@@ -40,6 +40,7 @@ let session = createSession(medical);
 let view = presentNode(medical, session);
 assert(view.choices.length === 3, "стартовый узел отдаёт choices");
 assert(!view.choices[0].effects, "effects не светятся клиенту");
+assert(!view.choices.some((c) => "tone" in c || "feedback" in c), "оценка варианта не светится клиенту");
 
 ({ session } = applyChoice(medical, session, "protocol"));
 assert(session.safety > 50, "protocol поднимает safety");
