@@ -11,7 +11,7 @@ const DEFAULT_FORM = {
   loyalty: 5,
   safety: 5,
   xp: 10,
-  feedback: "Дополнительная сервисная развилка из лаборатории.",
+  feedback: "Дополнительный сервисный вариант.",
 };
 
 export default function Lab() {

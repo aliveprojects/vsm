@@ -113,7 +113,7 @@ export function buildApiRouter() {
         xp: Number(choice.effects?.xp ?? 10),
       },
       competencyTags: choice.competencyTags || node.competencyFocus || [],
-      feedback: choice.feedback || "Добавленная развилка (лаборатория).",
+      feedback: choice.feedback || "Новый вариант ответа.",
       betterAlternative: choice.betterAlternative || null,
       next: choice.next,
     };
